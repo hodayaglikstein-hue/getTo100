@@ -6,6 +6,7 @@ function GameBoard(props) {
   return (
     <>
       <div id={props.playerName}>
+        <h3>{props.playerName}</h3>
         <div id="number">{num}</div>
         <div id="buttons">
           <GameButtons setNum={setNum} num={num} />
