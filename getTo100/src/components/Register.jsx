@@ -18,6 +18,9 @@ function Register() {
     let copyArr = [...names];
     copyArr.splice(index, 1);
     setNames(copyArr);
+    if (copyArr.length === 0) {
+      setGameRunning(false);
+    }
   }
 
   const getNameValue = (event) => {

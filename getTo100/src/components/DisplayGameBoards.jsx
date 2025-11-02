@@ -14,6 +14,12 @@ function DisplayGameBoards(props) {
     }
   }
 
+  function resetCurrentPlayerIndex() {
+    if (props.playersArr.length === 1) {
+      setCurrentPlayerIndex(0);
+    }
+  }
+
   return (
     <>
       {props.playersArr.map((name, index) => {
@@ -26,6 +32,7 @@ function DisplayGameBoards(props) {
             currentPlayerIndex={currentPlayerIndex}
             changeIndex={changeIndex}
             removePlayer={props.removePlayer}
+            resetCurrentPlayerIndex={resetCurrentPlayerIndex}
           />
         );
       })}

@@ -4,6 +4,7 @@ function WinButtons(props) {
       <button
         onClick={() => {
           props.randomNum();
+          props.setWinner(false);
         }}
       >
         שחק שוב
@@ -11,6 +12,7 @@ function WinButtons(props) {
       <button
         onClick={() => {
           props.removePlayer(props.index);
+          props.resetCurrentPlayerIndex();
         }}
       >
         צא מהמשחק
