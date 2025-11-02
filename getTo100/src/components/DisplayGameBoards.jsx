@@ -25,6 +25,7 @@ function DisplayGameBoards(props) {
             gameRunning={props.gameRunning}
             currentPlayerIndex={currentPlayerIndex}
             changeIndex={changeIndex}
+            removePlayer={props.removePlayer}
           />
         );
       })}

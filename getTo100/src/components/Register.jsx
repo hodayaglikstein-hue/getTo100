@@ -1,6 +1,5 @@
 import { useState } from "react";
-import GameBoard from "./GameBoard";
-import DisplayGameBoards from "./DiaplayGameBoards";
+import DisplayGameBoards from "./DisplayGameBoards";
 
 function Register() {
   const [names, setNames] = useState([]);
@@ -14,6 +13,13 @@ function Register() {
     }
     setNames((prev) => [...prev, playerName]);
   }
+
+  function removePlayer(index) {
+    let copyArr = [...names];
+    copyArr.splice(index, 1);
+    setNames(copyArr);
+  }
+
   const getNameValue = (event) => {
     event.preventDefault();
     playerName = event.target.elements.username.value;
@@ -34,7 +40,11 @@ function Register() {
       >
         התחל משחק
       </button>
-      <DisplayGameBoards playersArr={names} gameRunning={gameRunning} />
+      <DisplayGameBoards
+        playersArr={names}
+        gameRunning={gameRunning}
+        removePlayer={removePlayer}
+      />
     </>
   );
 }
