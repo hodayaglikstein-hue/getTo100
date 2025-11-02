@@ -1,6 +1,5 @@
 function GameButtons(props) {
   function updateNum(action) {
-    console.log(props.num);
     let prevNum = props.num;
     switch (action) {
       case "add":
@@ -27,36 +26,46 @@ function GameButtons(props) {
   return (
     <>
       <button
+        disabled={!props.gameRunning || !props.isPlaying}
         onClick={() => {
           updateNum("add");
+          props.nextPlayer();
         }}
       >
         +1
       </button>
       <button
+        disabled={!props.gameRunning || !props.isPlaying}
         onClick={() => {
           updateNum("substract");
+          props.nextPlayer();
         }}
       >
         -1
       </button>
       <button
+        disabled={!props.gameRunning || !props.isPlaying}
         onClick={() => {
           updateNum("multiply");
+          props.nextPlayer();
         }}
       >
         *2
       </button>
       <button
+        disabled={!props.gameRunning || !props.isPlaying}
         onClick={() => {
           updateNum("divide");
+          props.nextPlayer();
         }}
       >
         /2
       </button>
       <button
+        disabled={!props.gameRunning || !props.isPlaying}
         onClick={() => {
           updateNum("power");
+          props.nextPlayer();
         }}
       >
         ^2

@@ -1,8 +1,11 @@
 import { useState } from "react";
 import GameBoard from "./GameBoard";
+import DisplayGameBoards from "./DiaplayGameBoards";
 
 function Register() {
   const [names, setNames] = useState([]);
+  const [gameRunning, setGameRunning] = useState(false);
+
   let playerName;
 
   function addPlayer(playerName) {
@@ -24,10 +27,14 @@ function Register() {
         <input name="username" type="text" placeholder="הכנס שם: " />
         <button type="submit">כניסה</button>
       </form>
-
-      {names.map((name, index) => {
-        return <GameBoard playerName={name} key={index} />;
-      })}
+      <button
+        onClick={() => {
+          setGameRunning(true);
+        }}
+      >
+        התחל משחק
+      </button>
+      <DisplayGameBoards playersArr={names} gameRunning={gameRunning} />
     </>
   );
 }
