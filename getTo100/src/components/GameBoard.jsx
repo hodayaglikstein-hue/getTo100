@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GameButtons from "./GameButtons";
 import WinButtons from "./WinButton";
+import "../App.css";
 
 function GameBoard(props) {
   const [num, setNum] = useState(Math.floor(Math.random() * 10));
@@ -10,7 +11,6 @@ function GameBoard(props) {
 
   function randomNum() {
     let number = Math.floor(Math.random() * 10);
-    console.log(number);
     setNum(number);
   }
 
@@ -30,6 +30,7 @@ function GameBoard(props) {
     setIsPlaying(true);
   }
 
+  //check victory
   if (num === 10 && isPlaying) {
     setIsPlaying(false);
     setNum(" ");
@@ -42,9 +43,11 @@ function GameBoard(props) {
 
   return (
     <>
-      <div id={props.playerName}>
+      <div className="boards" id={isPlaying && props.gameRunning && "border"}>
         <h3>{props.playerName}</h3>
-        <div id="number">{num}</div>
+        {props.gameRunning && (
+          <div id="number">{winner ? "🎉 הצלחת" : num}</div>
+        )}
         <div id="buttons">
           {!winner && (
             <GameButtons
@@ -60,14 +63,17 @@ function GameBoard(props) {
           {winner && (
             <WinButtons
               randomNum={randomNum}
-              removePlayer={props.removePlayer}
               index={props.index}
-              resetCurrentPlayerIndex={props.resetCurrentPlayerIndex}
               setWinner={setWinner}
+              resetCurrentPlayerIndex={props.resetCurrentPlayerIndex}
+              removePlayer={props.removePlayer}
             />
           )}
         </div>
-        <h4>התוצאות שלך הן:</h4>
+        <h4>
+          {JSON.parse(localStorage.getItem(props.playerName)).length > 0 &&
+            "התוצאות שלך הן:"}
+        </h4>
         {JSON.parse(localStorage.getItem(props.playerName)).map((count) => {
           return count + ", ";
         })}
